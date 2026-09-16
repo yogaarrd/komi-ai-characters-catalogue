@@ -9,6 +9,9 @@ on:
     paths:
       - 'characters/**'
 
+permissions:
+  contents: write
+
 jobs:
   validate:
     runs-on: ubuntu-latest
