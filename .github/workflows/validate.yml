@@ -1,0 +1,173 @@
+name: Validate Character & Update Index
+
+on:
+  pull_request:
+    paths:
+      - 'characters/**'
+  push:
+    branches: [main]
+    paths:
+      - 'characters/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate character.json files
+        run: |
+          echo "🔍 Validating character.json files..."
+          
+          VALID=true
+          
+          for dir in characters/*/; do
+            if [ -d "$dir" ] && [ "$dir" != "characters/_template/" ]; then
+              CHAR_NAME=$(basename "$dir")
+              echo "📦 Checking: $CHAR_NAME"
+              
+              # Check character.json exists
+              if [ ! -f "$dir/character.json" ]; then
+                echo "❌ Error: $CHAR_NAME/character.json not found"
+                VALID=false
+                continue
+              fi
+              
+              # Validate JSON syntax
+              if ! cat "$dir/character.json" | jq . > /dev/null 2>&1; then
+                echo "❌ Error: $CHAR_NAME/character.json is not valid JSON"
+                VALID=false
+                continue
+              fi
+              
+              # Check required fields
+              REQUIRED_FIELDS=("id" "name" "description" "avatar" "author")
+              for field in "${REQUIRED_FIELDS[@]}"; do
+                if ! cat "$dir/character.json" | jq -e ".$field" > /dev/null 2>&1; then
+                  echo "❌ Error: $CHAR_NAME/character.json missing required field: $field"
+                  VALID=false
+                fi
+              done
+              
+              # Check author fields
+              if ! cat "$dir/character.json" | jq -e ".author.name" > /dev/null 2>&1; then
+                echo "❌ Error: $CHAR_NAME/character.json missing author.name"
+                VALID=false
+              fi
+              
+              if ! cat "$dir/character.json" | jq -e ".author.github" > /dev/null 2>&1; then
+                echo "❌ Error: $CHAR_NAME/character.json missing author.github"
+                VALID=false
+              fi
+              
+              # Check avatar file exists
+              AVATAR=$(cat "$dir/character.json" | jq -r '.avatar')
+              if [ ! -f "$dir/$AVATAR" ]; then
+                echo "❌ Error: $CHAR_NAME/$AVATAR not found"
+                VALID=false
+              fi
+              
+              echo "✅ $CHAR_NAME passed validation"
+            fi
+          done
+          
+          if [ "$VALID" = false ]; then
+            echo "❌ Validation failed"
+            exit 1
+          fi
+          
+          echo "✅ All characters validated successfully"
+
+      - name: Generate index.json
+        run: |
+          echo "📝 Generating index.json..."
+          
+          # Create index.json generator script
+          cat > generate-index.js << 'EOF'
+          const fs = require('fs');
+          const path = require('path');
+          
+          const charactersDir = path.join(__dirname, 'characters');
+          const index = {
+            version: "1.0.0",
+            lastUpdated: new Date().toISOString(),
+            characters: []
+          };
+          
+          // Read all character directories
+          const dirs = fs.readdirSync(charactersDir, { withFileTypes: true })
+            .filter(d => d.isDirectory() && d.name !== '_template');
+          
+          for (const dir of dirs) {
+            const charPath = path.join(charactersDir, dir.name, 'character.json');
+            
+            if (fs.existsSync(charPath)) {
+              try {
+                const char = JSON.parse(fs.readFileSync(charPath, 'utf8'));
+                
+                // Get avatar URL
+                const avatarUrl = `https://raw.githubusercontent.com/${process.env.GITHUB_REPOSITORY}/main/characters/${dir.name}/${char.avatar}`;
+                
+                index.characters.push({
+                  id: char.id || dir.name,
+                  name: char.name,
+                  description: char.description || "",
+                  avatar: avatarUrl,
+                  gender: char.gender || "not_specified",
+                  personality: char.personality || "default",
+                  tags: char.tags || [],
+                  author: {
+                    name: char.author?.name || "Unknown",
+                    github: char.author?.github || "unknown"
+                  },
+                  version: char.version || "1.0.0",
+                  downloads: 0
+                });
+                
+                console.log(`✅ Added: ${char.name}`);
+              } catch (error) {
+                console.error(`❌ Error processing ${dir.name}:`, error.message);
+              }
+            }
+          }
+          
+          // Sort by name
+          index.characters.sort((a, b) => a.name.localeCompare(b.name));
+          
+          // Write index.json
+          fs.writeFileSync(
+            path.join(__dirname, 'index.json'),
+            JSON.stringify(index, null, 2)
+          );
+          
+          console.log(`\n📊 Total characters: ${index.characters.length}`);
+          EOF
+          
+          node generate-index.js
+          rm generate-index.js
+
+      - name: Commit changes
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          git add index.json
+          
+          # Check if there are changes to commit
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: update index.json [skip ci]"
+            git push
+          fi

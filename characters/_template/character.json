@@ -1,0 +1,18 @@
+{
+  "id": "template-character",
+  "name": "Template Character",
+  "description": "This is a template character. Replace with your own character.",
+  "avatar": "avatar.png",
+  "gender": "not_specified",
+  "personality": "default",
+  "customInstructions": "Custom instructions for your character go here.",
+  "language": "auto",
+  "responseLength": "balanced",
+  "tags": ["template"],
+  "author": {
+    "name": "Your Name",
+    "github": "your-username"
+  },
+  "version": "1.0.0",
+  "createdAt": "2024-01-15"
+}
