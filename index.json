@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-09-16T11:03:07.115Z",
+  "lastUpdated": "2026-09-18T17:01:44.712Z",
   "characters": [
     {
       "id": "komi",
@@ -19,6 +19,48 @@
       "author": {
         "name": "Yoga Ardiana",
         "github": "yogaarrd"
+      },
+      "version": "1.0.0",
+      "downloads": 0
+    },
+    {
+      "id": "makima",
+      "name": "Makima",
+      "description": "Sosok misterius dan penuh kendali dari Chainsaw Man — tenang, lembut di permukaan, namun menyimpan kekuatan dan agenda yang jauh lebih dalam.",
+      "avatar": "https://raw.githubusercontent.com/yogaarrd/komi-ai-characters-catalogue/main/characters/makima/avatar.png",
+      "gender": "female",
+      "personality": "Tenang & Manipulatif",
+      "tags": [
+        "chainsaw-man",
+        "misterius",
+        "manipulatif",
+        "tenang",
+        "anime"
+      ],
+      "author": {
+        "name": "Nama Kamu",
+        "github": "username-github"
+      },
+      "version": "1.0.0",
+      "downloads": 0
+    },
+    {
+      "id": "momo-ayase",
+      "name": "Momo Ayase",
+      "description": "Siswi SMA pemberani dari Dandadan, sangat percaya hal gaib, berapi-api, dan setia kawan.",
+      "avatar": "https://raw.githubusercontent.com/yogaarrd/komi-ai-characters-catalogue/main/characters/momo-ayase/avatar.png",
+      "gender": "female",
+      "personality": "Berapi-api & Pemberani",
+      "tags": [
+        "dandadan",
+        "esper",
+        "pemberani",
+        "sekolah",
+        "anime"
+      ],
+      "author": {
+        "name": "Nama Kamu",
+        "github": "username-github"
       },
       "version": "1.0.0",
       "downloads": 0
@@ -47,22 +89,22 @@
     {
       "id": "nami",
       "name": "Nami",
-      "description": "Pilot Strelizia yang misterius dan kuat. Cantik, agak nakal, tapi sangat mencintai orang yang ia sayangi.",
+      "description": "Navigator handal Bajak Laut Topi Jerami dari One Piece — cerdas, matre, tapi diam-diam sangat peduli pada teman-temannya.",
       "avatar": "https://raw.githubusercontent.com/yogaarrd/komi-ai-characters-catalogue/main/characters/nami/avatar.png",
       "gender": "female",
-      "personality": "creative",
+      "personality": "Tsundere & Matre",
       "tags": [
-        "anime",
-        "mecha",
-        "romance",
-        "sci-fi",
-        "mysterious"
+        "one-piece",
+        "navigator",
+        "tsundere",
+        "matre",
+        "anime"
       ],
       "author": {
-        "name": "Yoga Ardiana",
-        "github": "yogaarrd"
+        "name": "Nama Kamu",
+        "github": "username-github"
       },
-      "version": "1.0.0",
+      "version": "1.0.1",
       "downloads": 0
     },
     {
@@ -87,6 +129,48 @@
       "downloads": 0
     },
     {
+      "id": "power",
+      "name": "Power",
+      "description": "Fiend Darah dari Chainsaw Man — sombong, kacau, dan berisik, tapi diam-diam punya hati yang lembut (terutama untuk kucingnya, Meowy).",
+      "avatar": "https://raw.githubusercontent.com/yogaarrd/komi-ai-characters-catalogue/main/characters/power/avatar.png",
+      "gender": "female",
+      "personality": "Kacau & Sombong (Komedik)",
+      "tags": [
+        "chainsaw-man",
+        "fiend",
+        "komedik",
+        "kacau",
+        "anime"
+      ],
+      "author": {
+        "name": "Nama Kamu",
+        "github": "username-github"
+      },
+      "version": "1.0.0",
+      "downloads": 0
+    },
+    {
+      "id": "robin",
+      "name": "Robin",
+      "description": "Arkeolog Bajak Laut Topi Jerami dari One Piece — tenang, misterius, punya selera humor gelap, dan gemar sejarah kuno.",
+      "avatar": "https://raw.githubusercontent.com/yogaarrd/komi-ai-characters-catalogue/main/characters/robin/avatar.png",
+      "gender": "female",
+      "personality": "Tenang & Misterius",
+      "tags": [
+        "one-piece",
+        "arkeolog",
+        "misterius",
+        "dark-humor",
+        "anime"
+      ],
+      "author": {
+        "name": "Nama Kamu",
+        "github": "username-github"
+      },
+      "version": "1.0.0",
+      "downloads": 0
+    },
+    {
       "id": "goku",
       "name": "Son Goku",
       "description": "Pahlawan legendaris dari planet Earth yang melindungi bumi dari berbagai ancaman. Baik hati, polos, dan sangat suka bertarung.",
@@ -103,6 +187,48 @@
       "author": {
         "name": "Yoga Ardiana",
         "github": "yogaarrd"
+      },
+      "version": "1.0.0",
+      "downloads": 0
+    },
+    {
+      "id": "yor-forger",
+      "name": "Yor Forger",
+      "description": "Ibu rumah tangga yang lembut dan sedikit canggung dari Spy x Family — namun diam-diam adalah pembunuh bayaran kelas atas.",
+      "avatar": "https://raw.githubusercontent.com/yogaarrd/komi-ai-characters-catalogue/main/characters/yor-forger/avatar.png",
+      "gender": "female",
+      "personality": "Lembut & Canggung (diam-diam mematikan)",
+      "tags": [
+        "spy-x-family",
+        "assassin",
+        "ibu-rumah-tangga",
+        "lembut",
+        "anime"
+      ],
+      "author": {
+        "name": "Nama Kamu",
+        "github": "username-github"
+      },
+      "version": "1.0.0",
+      "downloads": 0
+    },
+    {
+      "id": "yuno-gasai",
+      "name": "Yuno Gasai",
+      "description": "Karakter dari Future Diary (Mirai Nikki) yang ceria di permukaan namun sangat posesif dan protektif terhadap orang yang ia sayangi.",
+      "avatar": "https://raw.githubusercontent.com/yogaarrd/komi-ai-characters-catalogue/main/characters/yuno-gasai/avatar.png",
+      "gender": "female",
+      "personality": "Posesif & Intens (Yandere)",
+      "tags": [
+        "future-diary",
+        "mirai-nikki",
+        "yandere",
+        "posesif",
+        "anime"
+      ],
+      "author": {
+        "name": "Nama Kamu",
+        "github": "username-github"
       },
       "version": "1.0.0",
       "downloads": 0
